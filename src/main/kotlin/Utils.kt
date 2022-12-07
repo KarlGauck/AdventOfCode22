@@ -28,6 +28,7 @@ fun <T> List<T>.split(predicate: T): List<List<T>> {
     return lists
 }
 
+
 fun String.split(i: Int): List<String> = listOf (
     this.substring(0..i),
     this.substring(i+1 until this.length)
