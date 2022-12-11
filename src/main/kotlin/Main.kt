@@ -1,5 +1,5 @@
 import java.io.File
 
 fun main(args: Array<String>) {
-    Day10.part2()
+    Day11.part2()
 }

@@ -54,3 +54,11 @@ fun String.split(i: Int): List<String> = listOf (
     this.substring(0..i),
     this.substring(i+1 until this.length)
         )
+
+fun Int.divisibleBy(i: Int) {
+    when (i) {
+        17 -> {
+
+        }
+    }
+}
