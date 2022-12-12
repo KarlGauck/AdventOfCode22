@@ -15,6 +15,9 @@ class Point(var x: Int, var y: Int) {
         this.y += other.y
     }
 
+    operator fun minus(other:Point) = plus(other*-1)
+    operator fun times(i: Int) = Point(x*i, y*i)
+
     fun clone() = Point(x, y)
 
     override fun equals(other: Any?): Boolean {
@@ -26,6 +29,8 @@ class Point(var x: Int, var y: Int) {
     override fun hashCode(): Int {
         return x*10000+y
     }
+
+    override fun toString(): String = "($x, $y)"
 }
 
 fun <T> List<T>.split(predicate: T): List<List<T>> {
@@ -54,11 +59,3 @@ fun String.split(i: Int): List<String> = listOf (
     this.substring(0..i),
     this.substring(i+1 until this.length)
         )
-
-fun Int.divisibleBy(i: Int) {
-    when (i) {
-        17 -> {
-
-        }
-    }
-}
