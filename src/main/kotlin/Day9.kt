@@ -4,7 +4,7 @@ object Day9 {
 
     fun part1() {
         val lines = Utils.getLines("9.txt")
-        val H = Point(0, 0)
+        var H = Point(0, 0)
         val T = Point(0, 0)
         val visited = mutableListOf(Point(0, 0))
         val dirs = mapOf(

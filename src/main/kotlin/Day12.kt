@@ -1,5 +1,3 @@
-import arrow.core.fold
-import java.io.File
 import kotlin.math.abs
 
 object Day12 {

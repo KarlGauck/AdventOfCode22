@@ -1,4 +1,5 @@
 import java.io.File
+import kotlin.math.sqrt
 
 object Utils {
     fun getLines(src: String): MutableList<String> {
@@ -10,13 +11,11 @@ object Utils {
 
 class Point(var x: Int, var y: Int) {
     operator fun plus(other: Point) = Point(x + other.x, y + other.y)
-    operator fun plusAssign(other: Point) {
-        this.x += other.x
-        this.y += other.y
-    }
 
     operator fun minus(other:Point) = plus(other*-1)
     operator fun times(i: Int) = Point(x*i, y*i)
+
+    operator fun div(i: Int) = Point(x/i, y/i)
 
     fun clone() = Point(x, y)
 

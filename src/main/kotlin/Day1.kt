@@ -1,5 +1,3 @@
-import arrow.core.split
-
 object Day1 {
 
     fun part1() {
