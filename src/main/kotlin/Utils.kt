@@ -26,7 +26,30 @@ class Point(var x: Int, var y: Int) {
     }
 
     override fun hashCode(): Int {
-        return x*10000+y
+        return x*5000000+y
+    }
+
+    override fun toString(): String = "($x, $y)"
+}
+
+class BigPoint(var x: Long, var y: Long) {
+    operator fun plus(other: BigPoint) = BigPoint(x + other.x, y + other.y)
+
+    operator fun minus(other: BigPoint) = BigPoint(x-other.x, y-other.y)
+    operator fun times(i: Long) = BigPoint(x*i, y*i)
+
+    operator fun div(i: Long) = BigPoint(x/i, y/i)
+
+    fun clone() = BigPoint(x, y)
+
+    override fun equals(other: Any?): Boolean {
+        if (other is BigPoint)
+            return x==other.x && y == other.y
+        else return super.equals(other)
+    }
+
+    override fun hashCode(): Int {
+        return (x* 5000000 +y).toInt()
     }
 
     override fun toString(): String = "($x, $y)"
