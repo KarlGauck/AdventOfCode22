@@ -1,4 +1,5 @@
 import java.io.File
+import java.lang.Integer.min
 import kotlin.math.sqrt
 
 object Utils {
@@ -32,29 +33,6 @@ class Point(var x: Int, var y: Int) {
     override fun toString(): String = "($x, $y)"
 }
 
-class BigPoint(var x: Long, var y: Long) {
-    operator fun plus(other: BigPoint) = BigPoint(x + other.x, y + other.y)
-
-    operator fun minus(other: BigPoint) = BigPoint(x-other.x, y-other.y)
-    operator fun times(i: Long) = BigPoint(x*i, y*i)
-
-    operator fun div(i: Long) = BigPoint(x/i, y/i)
-
-    fun clone() = BigPoint(x, y)
-
-    override fun equals(other: Any?): Boolean {
-        if (other is BigPoint)
-            return x==other.x && y == other.y
-        else return super.equals(other)
-    }
-
-    override fun hashCode(): Int {
-        return (x* 5000000 +y).toInt()
-    }
-
-    override fun toString(): String = "($x, $y)"
-}
-
 fun <T> List<T>.split(predicate: T): List<List<T>> {
     val lists = mutableListOf<MutableList<T>>(mutableListOf())
     var newList = false
@@ -76,6 +54,25 @@ fun <T> List<T>.split(predicate: T): List<List<T>> {
 }
 
 inline fun <reified T> Array<Array<T>>.xToY() = Array(this[0].size){ ox-> Array(this.size) { oy -> this[oy][ox] } }
+
+fun <T> Array<T>.shiftDown(amount: Int, fillValue: T) {
+    for (i in 0 until min(this.size-amount, this.size/2)) {
+        this[i] = this[i+amount]
+    }
+    for (i in min(amount, this.size-1) until this.size) {
+        this[i] = fillValue
+    }
+}
+
+fun <T> Array<T>.display(): String {
+    var s = "["
+    for (i in this.indices) {
+        s += this[i]
+        if (i < this.size-1)
+            s += ","
+    }
+    return "$s]"
+}
 
 fun String.split(i: Int): List<String> = listOf (
     this.substring(0..i),
