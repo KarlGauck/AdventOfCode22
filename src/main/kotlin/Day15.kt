@@ -8,8 +8,8 @@ object Day15 {
     }
 
     fun biginput(src: String) = Utils.getLines(src).map { listOf(
-        it.split(": closest")[0].split("at ")[1].convert { arrayOf(it.split(", y=")[0].replace("x=", "").toLong(), it.split(", y=")[1].toLong()) },
-        it.split(": closest")[1].split("at ")[1].convert { arrayOf(it.split(", y=")[0].replace("x=", "").toLong(), it.split(", y=")[1].toLong()) } )
+        it.split(": closest")[0].split("at ")[1].convert { a(it.split(", y=")[0].replace("x=", "").toLong(), it.split(", y=")[1].toLong()) },
+        it.split(": closest")[1].split("at ")[1].convert { a(it.split(", y=")[0].replace("x=", "").toLong(), it.split(", y=")[1].toLong()) } )
     }
 
     fun part1() {
@@ -47,8 +47,8 @@ object Day15 {
             println("scanner: $scannerNum")
             val dist = abs(s[0][0]-s[1][0])+abs(s[0][1]-s[1][1])
             for (x in s[0][0]-dist-1..s[0][0]+dist+1) {
-                val p1 = arrayOf(x, s[0][1] + (dist+1-abs(s[0][0]-x)))
-                val p2 = arrayOf(x, s[0][0] - (dist+1-abs(s[0][0]-x)))
+                val p1 = a(x, s[0][1] + (dist+1-abs(s[0][0]-x)))
+                val p2 = a(x, s[0][0] - (dist+1-abs(s[0][0]-x)))
                 if (!(p1[0]<0 || p1[0]>lim || p1[1]<0 || p1[1]>lim))
                     points+=p1
                 if (!(p2[0]<0 || p2[0]>lim || p2[1]<0 || p2[1]>lim))

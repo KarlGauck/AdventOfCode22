@@ -80,3 +80,23 @@ fun String.split(i: Int): List<String> = listOf (
         )
 
 fun <T, R> T.convert(op: (T) -> R) = op(this)
+
+fun forDeltaX(xRadius: Int, operation: (dx: Int) -> Boolean) {
+    for (dx in -xRadius..xRadius)
+        if (operation(dx)) return
+}
+
+fun forDeltaXY(xRadius: Int, yRadius: Int, operation: (dx: Int, dy: Int) -> Boolean) {
+    for (dx in -xRadius..xRadius)
+        for (dy in -yRadius..yRadius)
+            if (operation(dx, dy)) return
+}
+
+fun forDeltaXYZ(xRadius: Int, yRadius: Int, zRadius: Int, operation: (dx: Int, dy: Int, dz: Int) -> Boolean) {
+    for (dx in -xRadius..xRadius)
+        for (dy in -yRadius..yRadius)
+            for (dz in -zRadius..zRadius)
+                if (operation(dx, dy, dz)) return
+}
+
+inline fun <reified T> a(vararg arg: T) = Array(arg.size) {arg[it]}

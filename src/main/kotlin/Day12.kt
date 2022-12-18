@@ -5,8 +5,8 @@ object Day12 {
     var endPos: Point = Point(0, 0)
 
     var initialized = false
-    var grid: Array<Array<Int>> = arrayOf()
-    var dirs: Array<Array<MutableSet<Point>>> = arrayOf()
+    var grid: Array<Array<Int>> = a()
+    var dirs: Array<Array<MutableSet<Point>>> = a()
     var parents = mutableMapOf<Point, Pair<Point, Int>>(
         )
 

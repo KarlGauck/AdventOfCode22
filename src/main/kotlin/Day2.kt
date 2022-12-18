@@ -7,11 +7,11 @@ object Day2 {
             if (!it.isEmpty()) {
                 score += if (it[2] == 'X') 1 else if (it[2] == 'Y') 2 else if (it[2] == 'Z') 3 else 0
                 when (it) {
-                    in arrayOf("A Y", "B Z", "C X") ->  {
+                    in a("A Y", "B Z", "C X") ->  {
                         println("won")
                         score += 6
                     }
-                    in arrayOf("A X", "B Y", "C Z") -> {
+                    in a("A X", "B Y", "C Z") -> {
                         println("draw")
                         score += 3
                     }
@@ -31,17 +31,17 @@ object Day2 {
     fun part2() {
         val lines = Utils.getLines("2_1.txt")
 
-        val won = arrayOf(
+        val won = a(
             "A Y",
             "B Z",
             "C X"
         )
-        val draw = arrayOf(
+        val draw = a(
             "A X",
             "B Y",
             "C Z"
         )
-        val lost = arrayOf(
+        val lost = a(
             "A Z",
             "B X",
             "C Y"
@@ -68,10 +68,10 @@ object Day2 {
             if (!it.isEmpty()) {
                 score += if (it[2] == 'X') 1 else if (it[2] == 'Y') 2 else if (it[2] == 'Z') 3 else 0
                 when (it) {
-                    in arrayOf("A Y", "B Z", "C X") ->  {
+                    in a("A Y", "B Z", "C X") ->  {
                         score += 6
                     }
-                    in arrayOf("A X", "B Y", "C Z") -> {
+                    in a("A X", "B Y", "C Z") -> {
                         score += 3
                     }
                 }

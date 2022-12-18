@@ -61,7 +61,7 @@ object Day8 {
         var trees = Array(lines.size) { y -> Array(lines[0].length) { x -> lines[y][x].digitToInt() } }.xToY()
 
         fun score(_x: Int, _y: Int): Int {
-            val directions = arrayOf(
+            val directions = a(
                 Pair(0, 1),
                 Pair(0, -1),
                 Pair(1, 0),

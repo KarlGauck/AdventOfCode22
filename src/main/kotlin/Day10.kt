@@ -54,7 +54,7 @@ object Day10 {
                     while (nx > 40)
                         nx -= 40
                     nx --
-                    if (nx in pixels.indices && nx in arrayOf(xv-1, xv, xv + 1)) {
+                    if (nx in pixels.indices && nx in a(xv-1, xv, xv + 1)) {
                         pixels[nx][h] = true
                     }
                     for (u in 0..39) {
