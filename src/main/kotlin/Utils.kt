@@ -1,6 +1,5 @@
 import java.io.File
 import java.lang.Integer.min
-import kotlin.math.sqrt
 
 object Utils {
     fun getLines(src: String): MutableList<String> {
@@ -100,3 +99,69 @@ fun forDeltaXYZ(xRadius: Int, yRadius: Int, zRadius: Int, operation: (dx: Int, d
 }
 
 inline fun <reified T> a(vararg arg: T) = Array(arg.size) {arg[it]}
+
+operator fun <T> Array<T>.invoke(index: Int): T = if (index < 0) this[this.lastIndex-index] else this[index]
+operator fun <T> List<T>.invoke(index: Int): T = if (index < 0) this[this.lastIndex-index] else this[index]
+
+operator fun <T> List<T>.get(string: String): T {
+    val sliced = string.slice(1 until string.length).toIntOrNull()
+    if (sliced != null) {
+        return if (sliced < 0) this[this.lastIndex- sliced *-1] else this[sliced]
+    }
+    else throw IllegalArgumentException()
+}
+
+operator fun <T> Array<T>.get(string: String): T {
+    val sliced = string.slice(1 until string.length).toIntOrNull()
+    if (sliced != null) {
+        return if (sliced < 0) this[this.lastIndex- sliced *-1] else this[sliced]
+    }
+    else throw IllegalArgumentException()
+}
+
+fun String.segmentByCharSet(vararg sets: String): List<String> {
+    val list = mutableListOf<String>()
+    var curr = ""
+    var currSet = ""
+    for (cWI in this.withIndex()) {
+        val c = cWI.value
+        val set = sets.firstOrNull { c in it } ?: ""
+        if (set != currSet) {
+            if (curr != "")
+                list += curr
+            currSet = set
+            curr = ""
+        }
+        curr += c
+        if (cWI.index == this.lastIndex)
+            list += curr
+    }
+    return list
+}
+
+infix fun Pos.vectorPlus(other: Array<Int>): Pos? = if (this.size == other.size)
+    this.mapIndexed { index: Int, i: Int -> i + other[index] }.toTypedArray()  else null
+
+infix fun Pos.vectorTimes(scalar: Int): Pos = this.map { it * scalar }.toTypedArray()
+
+operator fun <T> Array<Array<T>>.contains(array: Array<Int>): Boolean = array[0] in this.indices && array[1] in this[array[0]].indices
+
+operator fun <T> Array<Array<T>>.get(array: Array<Int>): T = this[array[0]][array[1]]
+
+var Array<Int>.x
+    set(value) {
+        this[0] = value
+    }
+    get() = this[0]
+
+var Array<Int>.y
+    set(value) {
+        this[1] = value
+    }
+    get() = this[1]
+
+typealias Pos = Array<Int>
+
+fun <T> Pair<T, T>.other(element: T): T = if (this.first == element) this.second else this.first
+
+operator fun <T> Pair<T, T>.contains(element: T): Boolean = this.first == element || this.second == element
