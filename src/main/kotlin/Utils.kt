@@ -160,8 +160,18 @@ var Array<Int>.y
     }
     get() = this[1]
 
+var Array<Int>.xy: Pos
+    set(value) {
+        this[0] = value[0]
+        this[1] = value[1]
+    }
+    get() = a(this[0], this[1])
+
 typealias Pos = Array<Int>
 
 fun <T> Pair<T, T>.other(element: T): T = if (this.first == element) this.second else this.first
 
 operator fun <T> Pair<T, T>.contains(element: T): Boolean = this.first == element || this.second == element
+
+fun Array<Int>.clone() = this.map { it }
+
