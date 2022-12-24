@@ -175,3 +175,9 @@ operator fun <T> Pair<T, T>.contains(element: T): Boolean = this.first == elemen
 
 fun Array<Int>.clone() = this.map { it }
 
+//operator fun <T> Array<Array<T>>.get(x: Int, y: Int): T = this[x][y]
+
+operator fun <T> Array<Array<T>>.set(x: Int, y: Int, value: T) {
+    this[x][y] = value
+}
+
